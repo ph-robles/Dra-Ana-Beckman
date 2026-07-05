@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
@@ -73,12 +74,15 @@ export function Hero() {
           direction="right"
           className="aspect-[4/5] w-full rounded-xl lg:aspect-[3/4]"
         >
-          {/* TODO(Raphael): substituir pelo retrato profissional da Dra. Ana */}
-          <div className="flex h-full w-full items-center justify-center rounded-xl bg-linear-to-br from-blush via-champagne-soft to-nude">
-            <span className="px-8 text-center text-xs uppercase tracking-[0.2em] text-espresso/50">
-              Foto profissional — Dra. Ana Beckman
-            </span>
-          </div>
+          {/* Coloque o arquivo em: public/images/photos/hero-portrait.jpg */}
+          <Image
+            src="/images/photos/hero-portrait.jpg"
+            alt="Dra. Ana Beatriz Beckman"
+            fill
+            priority
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            className="rounded-xl object-cover"
+          />
         </VeilReveal>
       </div>
     </section>

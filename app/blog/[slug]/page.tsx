@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/shared/reveal";
 import { BLOG_POSTS } from "@/lib/sample-data";
@@ -46,10 +47,14 @@ export default async function BlogPostPage({ params }: Props) {
           </h1>
         </Reveal>
         <Reveal delay={0.12}>
-          <div className="mt-8 flex aspect-[16/9] items-center justify-center rounded-lg bg-linear-to-br from-blush to-nude">
-            <span className="px-6 text-center text-xs uppercase tracking-[0.2em] text-espresso/50">
-              Imagem do post
-            </span>
+          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-lg bg-blush">
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              fill
+              sizes="(min-width: 1024px) 42rem, 100vw"
+              className="object-cover"
+            />
           </div>
         </Reveal>
         <Reveal delay={0.18}>

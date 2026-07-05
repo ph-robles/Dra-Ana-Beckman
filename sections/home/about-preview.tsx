@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, HeartHandshake, ShieldCheck, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/shared/reveal";
@@ -26,12 +27,14 @@ export function AboutPreview() {
     <section className="section-pad">
       <div className="mx-auto grid max-w-8xl gap-16 px-6 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-12">
         <VeilReveal direction="left" className="aspect-[4/5] rounded-xl lg:order-2">
-          {/* TODO(Raphael): substituir por foto do consultório ou da Dra. Ana */}
-          <div className="flex h-full w-full items-center justify-center rounded-xl bg-linear-to-tr from-nude via-blush to-ivory-deep">
-            <span className="px-8 text-center text-xs uppercase tracking-[0.2em] text-espresso/50">
-              Foto — consultório / atendimento
-            </span>
-          </div>
+          {/* Coloque o arquivo em: public/images/photos/about-consultorio.jpg */}
+          <Image
+            src="/images/photos/about-consultorio.jpg"
+            alt="Consultório da Dra. Ana Beatriz Beckman"
+            fill
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            className="rounded-xl object-cover"
+          />
         </VeilReveal>
 
         <div className="lg:order-1">

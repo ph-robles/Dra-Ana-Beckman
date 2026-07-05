@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/shared/reveal";
@@ -32,10 +33,14 @@ export default function BlogPage() {
                 data-cursor-hover
                 className="group block h-full overflow-hidden rounded-lg border border-nude bg-white shadow-soft-sm transition-shadow hover:shadow-soft"
               >
-                <div className="flex aspect-[16/10] items-center justify-center bg-linear-to-br from-blush to-nude">
-                  <span className="px-6 text-center text-xs uppercase tracking-[0.2em] text-espresso/50">
-                    Imagem do post
-                  </span>
+                <div className="relative aspect-[16/10] overflow-hidden bg-blush">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.title}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <div className="p-6">
                   <p className="text-xs uppercase tracking-wide text-champagne">

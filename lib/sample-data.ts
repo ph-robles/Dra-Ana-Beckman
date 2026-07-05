@@ -37,41 +37,43 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 // TODO(Raphael): substituir pelas fotos reais de antes/depois (com autorização)
+// Coloque os arquivos em public/images/before-after/ com estes nomes exatos.
 export const BEFORE_AFTER_ITEMS: BeforeAfterItem[] = [
   {
     id: "ba1",
     procedure: "Harmonização Facial",
-    beforeImage: "/images/before-after/placeholder-before-1.jpg",
-    afterImage: "/images/before-after/placeholder-after-1.jpg",
+    beforeImage: "/images/before-after/1-antes.jpg",
+    afterImage: "/images/before-after/1-depois.jpg",
   },
   {
     id: "ba2",
     procedure: "Preenchimento Labial",
-    beforeImage: "/images/before-after/placeholder-before-2.jpg",
-    afterImage: "/images/before-after/placeholder-after-2.jpg",
+    beforeImage: "/images/before-after/2-antes.jpg",
+    afterImage: "/images/before-after/2-depois.jpg",
   },
   {
     id: "ba3",
     procedure: "Contorno Mandibular",
-    beforeImage: "/images/before-after/placeholder-before-3.jpg",
-    afterImage: "/images/before-after/placeholder-after-3.jpg",
+    beforeImage: "/images/before-after/3-antes.jpg",
+    afterImage: "/images/before-after/3-depois.jpg",
   },
   {
     id: "ba4",
     procedure: "Olheiras",
-    beforeImage: "/images/before-after/placeholder-before-4.jpg",
-    afterImage: "/images/before-after/placeholder-after-4.jpg",
+    beforeImage: "/images/before-after/4-antes.jpg",
+    afterImage: "/images/before-after/4-depois.jpg",
   },
 ];
 
 // TODO(Raphael): substituir por posts reais do blog
+// Coloque as imagens de capa em public/images/blog/ com estes nomes.
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "o-que-e-harmonizacao-orofacial",
     title: "O que é Harmonização Orofacial e para quem é indicada",
     excerpt:
       "Entenda os princípios da HOF, como funciona a avaliação e por que naturalidade é sempre o objetivo principal.",
-    coverImage: "/images/blog/placeholder-1.jpg",
+    coverImage: "/images/blog/harmonizacao-orofacial.jpg",
     publishedAt: "2026-06-01",
     readingTime: "5 min",
   },
@@ -80,7 +82,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "Mitos e verdades sobre Botox",
     excerpt:
       "Separamos as principais dúvidas sobre toxina botulínica dos mitos que ainda circulam por aí.",
-    coverImage: "/images/blog/placeholder-2.jpg",
+    coverImage: "/images/blog/mitos-botox.jpg",
     publishedAt: "2026-05-15",
     readingTime: "4 min",
   },
@@ -89,7 +91,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "Como funciona a primeira avaliação",
     excerpt:
       "Um passo a passo do que esperar no primeiro encontro antes de qualquer procedimento.",
-    coverImage: "/images/blog/placeholder-3.jpg",
+    coverImage: "/images/blog/primeira-avaliacao.jpg",
     publishedAt: "2026-04-22",
     readingTime: "3 min",
   },

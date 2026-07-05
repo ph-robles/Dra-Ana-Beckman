@@ -10,7 +10,6 @@ import { LoadingScreen } from "@/components/shared/loading-screen";
 import { FloatingActions } from "@/components/shared/floating-actions";
 import { SITE, LOCATIONS } from "@/lib/constants";
 import "./globals.css";
-import Script from "next/script";
 
 const bodoni = Bodoni_Moda({
   subsets: ["latin"],

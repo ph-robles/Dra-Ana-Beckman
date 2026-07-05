@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import type { BeforeAfterItem } from "@/types";
 
 /**
  * Cartão comparativo Antes/Depois. Toque ou clique para alternar —
- * funciona igualmente bem em desktop e mobile. As imagens abaixo são
- * placeholders de cor; substituir por fotos reais (com autorização).
+ * funciona igualmente bem em desktop e mobile.
  */
 export function BeforeAfterCard({ item }: { item: BeforeAfterItem }) {
   const [showAfter, setShowAfter] = useState(false);
@@ -20,18 +20,26 @@ export function BeforeAfterCard({ item }: { item: BeforeAfterItem }) {
       aria-pressed={showAfter}
       className="group relative block aspect-[4/5] w-full overflow-hidden rounded-lg border border-nude text-left shadow-soft-sm"
     >
+      <Image
+        src={item.beforeImage}
+        alt={`Antes — ${item.procedure}`}
+        fill
+        sizes="(min-width: 1024px) 25vw, 50vw"
+        className="object-cover"
+      />
+
       <motion.div
-        animate={{
-          background: showAfter
-            ? "linear-gradient(135deg, #f0dad3, #b08d5b)"
-            : "linear-gradient(135deg, #e7e0d8, #c9bfae)",
-        }}
+        animate={{ opacity: showAfter ? 1 : 0 }}
         transition={{ duration: 0.5 }}
-        className="absolute inset-0 flex items-center justify-center"
+        className="absolute inset-0"
       >
-        <span className="px-6 text-center text-xs uppercase tracking-[0.2em] text-espresso/50">
-          Foto — {item.procedure}
-        </span>
+        <Image
+          src={item.afterImage}
+          alt={`Depois — ${item.procedure}`}
+          fill
+          sizes="(min-width: 1024px) 25vw, 50vw"
+          className="object-cover"
+        />
       </motion.div>
 
       <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs uppercase tracking-wide text-espresso shadow-soft-sm">

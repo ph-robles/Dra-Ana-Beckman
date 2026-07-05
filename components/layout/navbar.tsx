@@ -9,6 +9,41 @@ import { cn } from "@/lib/utils";
 import { NAV_LINKS, PROCEDURES, SITE } from "@/lib/constants";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 
+const ACTIVE_INDICATOR_ID = "nav-active-indicator";
+
+function NavItem({
+  href,
+  label,
+  active,
+  children,
+}: {
+  href: string;
+  label: string;
+  active: boolean;
+  children?: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      data-cursor-hover
+      className={cn(
+        "relative flex items-center gap-1 py-2 text-sm text-espresso-soft transition-colors hover:text-espresso",
+        active && "text-espresso"
+      )}
+    >
+      {label}
+      {children}
+      {active && (
+        <motion.span
+          layoutId={ACTIVE_INDICATOR_ID}
+          transition={{ type: "spring", stiffness: 380, damping: 32 }}
+          className="absolute -bottom-0.5 left-0 right-0 h-px bg-champagne"
+        />
+      )}
+    </Link>
+  );
+}
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -49,17 +84,9 @@ export function Navbar() {
                     onMouseEnter={() => setProceduresOpen(true)}
                     onMouseLeave={() => setProceduresOpen(false)}
                   >
-                    <Link
-                      href={link.href}
-                      data-cursor-hover
-                      className={cn(
-                        "flex items-center gap-1 text-sm text-espresso-soft transition-colors hover:text-espresso",
-                        pathname === link.href && "text-espresso"
-                      )}
-                    >
-                      {link.label}
+                    <NavItem href={link.href} label={link.label} active={pathname === link.href}>
                       <ChevronDown className="h-3.5 w-3.5" />
-                    </Link>
+                    </NavItem>
 
                     <AnimatePresence>
                       {proceduresOpen && (
@@ -89,16 +116,7 @@ export function Navbar() {
 
               return (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    data-cursor-hover
-                    className={cn(
-                      "text-sm text-espresso-soft transition-colors hover:text-espresso",
-                      pathname === link.href && "text-espresso"
-                    )}
-                  >
-                    {link.label}
-                  </Link>
+                  <NavItem href={link.href} label={link.label} active={pathname === link.href} />
                 </li>
               );
             })}

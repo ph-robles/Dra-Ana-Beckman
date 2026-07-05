@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/shared/reveal";
-import { BeforeAfterCard } from "@/components/shared/before-after-card";
+import { BeforeAfterSlider } from "@/components/shared/before-after-slider";
 import { BEFORE_AFTER_ITEMS } from "@/lib/sample-data";
 
 export const metadata: Metadata = {
@@ -24,15 +24,16 @@ export default function AntesDepoisPage() {
         </Reveal>
         <Reveal delay={0.14}>
           <p className="mt-4 max-w-lg text-sm text-espresso-soft">
-            Imagens ilustrativas — serão substituídas por fotos reais de
-            pacientes, com autorização, antes da publicação do site.
+            Arraste o controle para comparar antes e depois. Imagens
+            ilustrativas — serão substituídas por fotos reais de pacientes,
+            com autorização, antes da publicação do site.
           </p>
         </Reveal>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {BEFORE_AFTER_ITEMS.map((item, i) => (
             <Reveal key={item.id} delay={i * 0.08}>
-              <BeforeAfterCard item={item} />
+              <BeforeAfterSlider item={item} />
               <p className="mt-3 text-center text-sm text-espresso-soft">
                 {item.procedure}
               </p>

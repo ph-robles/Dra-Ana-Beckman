@@ -3,6 +3,15 @@ import { Instagram, Mail, MapPin } from "lucide-react";
 import { LEGAL_LINKS, LOCATIONS, NAV_LINKS, SITE } from "@/lib/constants";
 import { Reveal } from "@/components/shared/reveal";
 
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link href={href} className="group relative inline-block text-sm text-espresso-soft transition-colors hover:text-champagne">
+      {children}
+      <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-champagne transition-transform duration-300 ease-out group-hover:scale-x-100" />
+    </Link>
+  );
+}
+
 export function Footer() {
   const year = new Date().getFullYear();
 
@@ -22,9 +31,10 @@ export function Footer() {
                 href={SITE.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-2 text-sm text-espresso-soft transition-colors hover:text-champagne"
+                data-cursor-hover
+                className="group mt-5 inline-flex items-center gap-2 text-sm text-espresso-soft transition-colors hover:text-champagne"
               >
-                <Instagram className="h-4 w-4" />
+                <Instagram className="h-4 w-4 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110" />
                 {SITE.instagramHandle}
               </a>
             </div>
@@ -34,12 +44,7 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {NAV_LINKS.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-espresso-soft transition-colors hover:text-champagne"
-                    >
-                      {link.label}
-                    </Link>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
               </ul>
@@ -58,9 +63,7 @@ export function Footer() {
                 ))}
                 <li className="flex gap-2 text-sm text-espresso-soft">
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-champagne" />
-                  <a href={`mailto:${SITE.email}`} className="hover:text-champagne">
-                    {SITE.email}
-                  </a>
+                  <FooterLink href={`mailto:${SITE.email}`}>{SITE.email}</FooterLink>
                 </li>
               </ul>
             </div>
@@ -70,12 +73,7 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {LEGAL_LINKS.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-espresso-soft transition-colors hover:text-champagne"
-                    >
-                      {link.label}
-                    </Link>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
               </ul>

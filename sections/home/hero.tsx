@@ -1,23 +1,31 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/shared/reveal";
 import { VeilReveal } from "@/components/shared/veil-reveal";
 import { SITE } from "@/lib/constants";
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  // Parallax sutil e só-transform (GPU-friendly) — a imagem se move um
+  // pouco mais devagar que o scroll, dando profundidade sem distração.
+  const prefersReducedMotion = useReducedMotion();
+  const imageY = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? ["0%", "0%"] : ["0%", "14%"]);
+
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-28">
-      {/* Elementos flutuantes decorativos — atmosfera, nunca no centro das atenções */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-blush blur-3xl"
-        animate={{ y: [0, 22, 0] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-      />
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-[100svh] items-center overflow-hidden pt-28"
+    >
+      {/* Elemento flutuante decorativo — atmosfera, discreto, canto oposto ao texto */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute right-0 top-1/3 h-96 w-96 rounded-full bg-champagne-soft/60 blur-3xl"
@@ -68,23 +76,26 @@ export function Hero() {
           </Reveal>
         </div>
 
-        <VeilReveal
-          eager
-          delay={0.3}
-          direction="right"
-          className="aspect-[4/5] w-full rounded-xl lg:aspect-[3/4]"
-        >
-          {/* Coloque o arquivo em: public/images/photos/hero-portrait.jpg */}
-          <Image
-            src="/images/photos/hero-portrait.jpg"
-            alt="Dra. Ana Beatriz Beckman"
-            fill
-            priority
-            sizes="(min-width: 1024px) 45vw, 100vw"
-            className="rounded-xl object-cover"
-          />
-        </VeilReveal>
+        <motion.div style={{ y: imageY }}>
+          <VeilReveal
+            eager
+            delay={0.3}
+            direction="right"
+            className="aspect-[4/5] w-full rounded-xl lg:aspect-[3/4]"
+          >
+            {/* Coloque o arquivo em: public/images/photos/hero-portrait.jpg */}
+            <Image
+              src="/images/photos/hero-portrait.jpg"
+              alt="Dra. Ana Beatriz Beckman"
+              fill
+              priority
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="rounded-xl object-cover"
+            />
+          </VeilReveal>
+        </motion.div>
       </div>
     </section>
   );
 }
+

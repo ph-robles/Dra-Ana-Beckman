@@ -1,5 +1,17 @@
 import type { BeforeAfterItem, BlogPost, Testimonial } from "@/types";
 
+// TODO(Raphael): substituir por fotos reais do consultório / bastidores
+// Coloque os arquivos em public/images/gallery/ com estes nomes.
+// Quando a cliente tiver a API do Instagram configurada, este array pode
+// ser alimentado dinamicamente em vez de estático.
+export const GALLERY_IMAGES = [
+  { id: "g1", src: "/images/gallery/1.jpg", alt: "Bastidores do consultório" },
+  { id: "g2", src: "/images/gallery/2.jpg", alt: "Ambiente da clínica" },
+  { id: "g3", src: "/images/gallery/3.jpg", alt: "Detalhe de atendimento" },
+  { id: "g4", src: "/images/gallery/4.jpg", alt: "Produtos e materiais" },
+  { id: "g5", src: "/images/gallery/5.jpg", alt: "Momento com paciente" },
+] as const;
+
 // TODO(Raphael): substituir por depoimentos reais (com autorização das pacientes)
 export const TESTIMONIALS: Testimonial[] = [
   {

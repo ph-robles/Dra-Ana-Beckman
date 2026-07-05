@@ -68,29 +68,3 @@ export function Reveal({
     </motion.div>
   );
 }
-
-/**
- * Aplica o reveal a uma lista de filhos com atraso escalonado (stagger),
- * útil para grids de cards (procedimentos, depoimentos, etc.)
- */
-export function RevealGroup({
-  children,
-  className,
-  stagger = 0.08,
-  direction = "up",
-}: {
-  children: React.ReactNode[];
-  className?: string;
-  stagger?: number;
-  direction?: RevealDirection;
-}) {
-  return (
-    <div className={className}>
-      {children.map((child, i) => (
-        <Reveal key={i} direction={direction} delay={i * stagger}>
-          {child}
-        </Reveal>
-      ))}
-    </div>
-  );
-}

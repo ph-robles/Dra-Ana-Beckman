@@ -24,20 +24,9 @@ const DIFERENCIAIS = [
 
 export function AboutPreview() {
   return (
-    <section className="section-pad">
+    <section className="section-pad !pt-0">
       <div className="mx-auto grid max-w-8xl gap-16 px-6 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-12">
-        <VeilReveal direction="left" className="aspect-[4/5] rounded-xl lg:order-2">
-          {/* Coloque o arquivo em: public/images/photos/about-consultorio.jpg */}
-          <Image
-            src="/images/photos/about-consultorio.jpg"
-            alt="Consultório da Dra. Ana Beatriz Beckman"
-            fill
-            sizes="(min-width: 1024px) 45vw, 100vw"
-            className="rounded-xl object-cover"
-          />
-        </VeilReveal>
-
-        <div className="lg:order-1">
+        <div>
           <Reveal>
             <span className="eyebrow">Sobre a Dra. Ana Beckman</span>
           </Reveal>
@@ -82,6 +71,17 @@ export function AboutPreview() {
             </Link>
           </Reveal>
         </div>
+
+        <VeilReveal direction="left" className="aspect-[4/5] rounded-xl">
+          {/* Coloque o arquivo em: public/images/photos/about-consultorio.jpg */}
+          <Image
+            src="/images/photos/about-consultorio.jpg"
+            alt="Consultório da Dra. Ana Beatriz Beckman"
+            fill
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            className="rounded-xl object-cover"
+          />
+        </VeilReveal>
       </div>
     </section>
   );
